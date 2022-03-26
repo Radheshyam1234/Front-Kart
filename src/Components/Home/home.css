@@ -1,0 +1,27 @@
+.slides-container .prev,
+.slides-container .next {
+  color: var(--primary-color);
+}
+
+.text-banner-title {
+  text-transform: uppercase;
+  border-bottom: 4px solid var(--dark-primary-color);
+  padding: 2rem 2rem 1rem 2rem;
+  color: var(--dark-secondary-color);
+  display: inline-block;
+}
+
+.category-title {
+  color: var(--dark-secondary-color);
+}
+
+.card-hover {
+  cursor: pointer;
+  /* box-shadow: 1px 4px 12px 0px var(--light-secondary-color); */
+  transition: 0.5s ease;
+}
+
+.card-hover:hover {
+  box-shadow: var(--primary-color) 0px 1px 2px 0px,
+    var(--dark-primary-color) 0px 2px 6px 2px;
+}
