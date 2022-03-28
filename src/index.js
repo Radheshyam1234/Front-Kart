@@ -3,10 +3,14 @@ import ReactDOM from "react-dom";
 import { BrowserRouter as Router } from "react-router-dom";
 import { App } from "./App";
 
+import { ProductDataProvider } from "./Context/ProductDataContext/ProductDataProvider";
+
 ReactDOM.render(
   <React.StrictMode>
     <Router>
-      <App />
+      <ProductDataProvider>
+        <App />
+      </ProductDataProvider>
     </Router>
   </React.StrictMode>,
   document.getElementById("root")
