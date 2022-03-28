@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { SliderImages } from "./../../db";
 
 export const Slider = () => {
-  const [sliderIndex, setSliderIndex] = useState(0);
+  const [sliderIndex, setSliderIndex] = useState(1);
 
   return (
     <>
