@@ -5,9 +5,6 @@ import { Filter } from "./Filter/Filter";
 import "./styles.css";
 export const ProductListing = () => {
   const { productList } = useProductDataProvider();
-  useEffect(() => {
-    console.log(productList);
-  }, []);
 
   return (
     <div className="product-page-layout">
