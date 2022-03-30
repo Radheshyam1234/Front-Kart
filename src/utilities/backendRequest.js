@@ -13,3 +13,22 @@ export const getProductsFromDb = async (setProductList) => {
     console.log(error);
   }
 };
+
+export const getUserProfileFromDb = async (setUserProfile) => {
+  try {
+    const {
+      data: { response },
+      status,
+    } = await axios.get(`http://localhost:8080/users/myprofile`, {
+      headers: {
+        authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    });
+
+    if (status === 200) {
+      setUserProfile(response.user);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
