@@ -6,8 +6,11 @@ import { getProductsFromDb } from "./utilities/backendRequest";
 import { useStateProvider } from "./Context/StateContext/state-provider";
 import { useAuthProvider } from "./Context/AuthContext/AuthProvider";
 
-import { Home, ProductListing, Login, SignUp } from "./Components";
-import { getUserProfileFromDb } from "./utilities/backendRequest";
+import { Home, ProductListing, Login, SignUp, Wishlist } from "./Components";
+import {
+  getUserProfileFromDb,
+  getWishlistFromDb,
+} from "./utilities/backendRequest";
 
 import "./styles.css";
 
@@ -26,6 +29,7 @@ export const App = () => {
   useEffect(async () => {
     if (token) {
       getUserProfileFromDb(setUserProfile);
+      getWishlistFromDb(userState, userDispatch);
       navigate("/");
     }
   }, [token]);
@@ -37,6 +41,7 @@ export const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/products" element={<ProductListing />} />
+        <Route path="/wishlist" element={<Wishlist />} />
       </Routes>
     </div>
   );
