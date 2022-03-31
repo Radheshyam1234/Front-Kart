@@ -11,9 +11,9 @@ export const Wishlist = () => {
       <div className="spacer-3rem"></div>
 
       <div className="grid-4-column-layout">
-        {userState.wishlistItems?.map((prod) => {
-          return <WishlistCardItem prod={prod} key={prod.id} />;
-        })}
+        {userState.wishlistItems?.map((prod) => (
+          <WishlistCardItem prod={prod} key={prod.id} />
+        ))}
       </div>
 
       <div className="spacer-3rem"></div>

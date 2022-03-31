@@ -1,4 +1,3 @@
-import React from "react";
 import { useUserActions } from "../utils/useUserActions";
 
 export const LikeBtn = ({ prod }) => {
