@@ -50,3 +50,21 @@ export const getWishlistFromDb = async (userState, userDispatch) => {
     console.log(error);
   }
 };
+
+export const getCartFromDb = async (userState, userDispatch) => {
+  try {
+    const response = await axios({
+      method: "GET",
+      url: `http://localhost:8080/cart`,
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    });
+
+    if (response.status === 200) {
+      userDispatch({ type: "SET_CART", payload: response.data.response });
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};

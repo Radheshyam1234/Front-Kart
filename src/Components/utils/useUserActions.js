@@ -65,9 +65,90 @@ export const useUserActions = () => {
     await removeProductFromWishlist(prod);
   };
 
+  const addProductInCart = async (prod) => {
+    const addProductToCart = async (product) => {
+      try {
+        const response = await axios({
+          method: "POST",
+          url: `http://localhost:8080/cart`,
+          data: {
+            product,
+          },
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        });
+
+        if (response.status === 200) {
+          userDispatch({ type: "SET_CART", payload: response.data.response });
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    await addProductToCart(prod);
+  };
+
+  const removeProductFromCart = async (prod) => {
+    const removeProductFromCart = async (product) => {
+      try {
+        const response = await axios({
+          method: "DELETE",
+          url: `http://localhost:8080/cart`,
+          data: {
+            product,
+          },
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        });
+
+        if (response.status === 200) {
+          userDispatch({ type: "SET_CART", payload: response.data.response });
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    await removeProductFromCart(prod);
+  };
+
+  const updateQuantity = async (prod, increase) => {
+    const updateQtyOfProductInCart = async (product, increase) => {
+      try {
+        const response = await axios({
+          method: "PATCH",
+          url: `http://localhost:8080/cart`,
+          data: {
+            product,
+            increase,
+          },
+          headers: {
+            Authorization: "Bearer " + localStorage.getItem("token"),
+          },
+        });
+
+        if (response.status === 200) {
+          userDispatch({
+            type: "SET_CART",
+            payload: response.data.response,
+          });
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    await updateQtyOfProductInCart(prod.product, increase);
+  };
+
   return {
     addProductInWishlist,
     removeProductFromWishlist,
     isPresentInWishlist,
+    isPresentInCart,
+    removeProductFromCart,
+    addProductInCart,
+    updateQuantity,
   };
 };
