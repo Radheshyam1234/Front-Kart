@@ -4,3 +4,4 @@ export { LikeBtn } from "./LikeBtn/LikeBtn";
 export { AddToCartBtn } from "./AddToCartBtn/AddToCartBtn";
 export { SignUp, Login } from "./Authentication";
 export { Wishlist } from "./Wishlist";
+export { Cart } from "./Cart";
