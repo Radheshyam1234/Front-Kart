@@ -8,6 +8,7 @@ import { useAuthProvider } from "./Context/AuthContext/AuthProvider";
 import {
   Home,
   ProductListing,
+  ProductDetail,
   Login,
   SignUp,
   Wishlist,
@@ -51,6 +52,7 @@ export const App = () => {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/products" element={<ProductListing />} />
+        <Route path="/products/:id" element={<ProductDetail />} />
         <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/cart" element={<Cart />} />
       </Routes>
