@@ -1,3 +1,4 @@
+export { Navbar } from "./Header";
 export { Home } from "./Home";
 export { ProductListing } from "./Product-listing";
 export { ProductDetail } from "./ProductDetail";
