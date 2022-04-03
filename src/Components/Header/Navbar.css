@@ -1,0 +1,29 @@
+.search-data-results {
+  position: absolute;
+  /* top: calc(2.4rem); */
+  top: 2.75rem;
+  padding: 1rem 0rem;
+  background-color: white;
+  width: 45%;
+  overflow-y: auto;
+}
+.search-data-results ul li:hover {
+  cursor: pointer;
+}
+
+.suggestion-item {
+  padding: 8px 1.5rem;
+  cursor: pointer;
+}
+.suggestion-item:hover {
+  color: white;
+  background-color: #c01322;
+  opacity: 0.35;
+}
+
+@media (max-width: 788px) {
+  .search-data-results {
+    width: 100%;
+    top: 1.5rem;
+  }
+}

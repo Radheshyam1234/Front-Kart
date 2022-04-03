@@ -6,6 +6,7 @@ import { useStateProvider } from "./Context/StateContext/state-provider";
 import { useAuthProvider } from "./Context/AuthContext/AuthProvider";
 
 import {
+  Navbar,
   Home,
   ProductListing,
   ProductDetail,
@@ -47,6 +48,8 @@ export const App = () => {
 
   return (
     <div className="App">
+      <Navbar />
+      <div className="spacer-3rem"></div>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
