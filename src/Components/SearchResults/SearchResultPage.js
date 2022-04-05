@@ -19,10 +19,6 @@ export const SearchResultPage = () => {
     });
   };
 
-  useEffect(() => {
-    console.log(FilteredData());
-  }, []);
-
   return (
     <div>
       {FilteredData().length ? (
