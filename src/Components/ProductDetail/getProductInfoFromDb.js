@@ -1,11 +1,12 @@
 import axios from "axios";
+import { API_URL } from "../../utilities/ApiUrl";
 export const getProductInfo = async (productId) => {
   try {
     const {
       data: { response },
     } = await axios({
       method: "GET",
-      url: `http://localhost:8080/products/${productId}`,
+      url: `${API_URL}/products/${productId}`,
     });
 
     return response;

@@ -7,6 +7,7 @@ import {
 } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { API_URL } from "../../utilities/ApiUrl";
 
 export const AuthContext = createContext();
 
@@ -27,7 +28,7 @@ export const AuthProvider = ({ children }) => {
         status,
       } = await axios({
         method: "POST",
-        url: "http://localhost:8080/users",
+        url: `${API_URL}/users`,
         data: {
           email,
           password,
@@ -60,7 +61,7 @@ export const AuthProvider = ({ children }) => {
         status,
       } = await axios({
         method: "POST",
-        url: "http://localhost:8080/users/authenticate",
+        url: `${API_URL}/users/authenticate`,
         data: {
           email,
           password,
