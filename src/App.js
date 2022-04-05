@@ -14,6 +14,7 @@ import {
   SignUp,
   Wishlist,
   Cart,
+  SearchResultPage,
 } from "./Components";
 import {
   getProductsFromDb,
@@ -56,6 +57,7 @@ export const App = () => {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/products" element={<ProductListing />} />
         <Route path="/products/:id" element={<ProductDetail />} />
+        <Route path="/search/:query" element={<SearchResultPage />} />
         <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/cart" element={<Cart />} />
       </Routes>

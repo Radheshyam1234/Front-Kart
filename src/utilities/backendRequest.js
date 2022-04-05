@@ -1,12 +1,12 @@
 import axios from "axios";
-
+import { API_URL } from "../utilities/ApiUrl";
 export const getProductsFromDb = async (setProductList) => {
   try {
     const {
       data: { response },
     } = await axios({
       method: "GET",
-      url: `http://localhost:8080/products`,
+      url: `${API_URL}/products`,
     });
     setProductList(response);
   } catch (error) {
@@ -19,7 +19,7 @@ export const getUserProfileFromDb = async (setUserProfile) => {
     const {
       data: { response },
       status,
-    } = await axios.get(`http://localhost:8080/users/myprofile`, {
+    } = await axios.get(`${API_URL}/users/myprofile`, {
       headers: {
         authorization: "Bearer " + localStorage.getItem("token"),
       },
@@ -37,7 +37,7 @@ export const getWishlistFromDb = async (userState, userDispatch) => {
   try {
     const response = await axios({
       method: "GET",
-      url: `http://localhost:8080/wishlist`,
+      url: `${API_URL}/wishlist`,
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
       },
@@ -55,7 +55,7 @@ export const getCartFromDb = async (userState, userDispatch) => {
   try {
     const response = await axios({
       method: "GET",
-      url: `http://localhost:8080/cart`,
+      url: `${API_URL}/cart`,
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
       },

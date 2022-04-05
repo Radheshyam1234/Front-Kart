@@ -1,4 +1,5 @@
 import { useStateProvider } from "../../Context/StateContext/state-provider";
+import { API_URL } from "../../utilities/ApiUrl";
 import axios from "axios";
 
 export const useUserActions = () => {
@@ -15,7 +16,7 @@ export const useUserActions = () => {
       try {
         const response = await axios({
           method: "POST",
-          url: `http://localhost:8080/wishlist`,
+          url: `${API_URL}/wishlist`,
           data: {
             product,
           },
@@ -43,7 +44,7 @@ export const useUserActions = () => {
       try {
         const response = await axios({
           method: "DELETE",
-          url: `http://localhost:8080/wishlist`,
+          url: `${API_URL}/wishlist`,
           data: {
             product,
           },
@@ -70,7 +71,7 @@ export const useUserActions = () => {
       try {
         const response = await axios({
           method: "POST",
-          url: `http://localhost:8080/cart`,
+          url: `${API_URL}/cart`,
           data: {
             product,
           },
@@ -95,7 +96,7 @@ export const useUserActions = () => {
       try {
         const response = await axios({
           method: "DELETE",
-          url: `http://localhost:8080/cart`,
+          url: `${API_URL}/cart`,
           data: {
             product,
           },
@@ -119,7 +120,7 @@ export const useUserActions = () => {
       try {
         const response = await axios({
           method: "PATCH",
-          url: `http://localhost:8080/cart`,
+          url: `${API_URL}/cart`,
           data: {
             product,
             increase,
