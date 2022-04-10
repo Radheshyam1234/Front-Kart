@@ -16,6 +16,8 @@ import {
   Cart,
   SearchResultPage,
 } from "./Components";
+
+import { PrivateRoute } from "./Components/PrivateRoute";
 import {
   getProductsFromDb,
   getUserProfileFromDb,
@@ -58,8 +60,23 @@ export const App = () => {
         <Route path="/products" element={<ProductListing />} />
         <Route path="/products/:id" element={<ProductDetail />} />
         <Route path="/search/:query" element={<SearchResultPage />} />
-        <Route path="/wishlist" element={<Wishlist />} />
-        <Route path="/cart" element={<Cart />} />
+        <Route
+          path="/wishlist"
+          element={
+            <PrivateRoute>
+              <Wishlist />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/cart"
+          element={
+            <PrivateRoute>
+              <Cart />
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </div>
   );
