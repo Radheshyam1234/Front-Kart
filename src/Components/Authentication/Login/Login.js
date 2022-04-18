@@ -1,15 +1,18 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useAuthProvider } from "../../../Context/AuthContext/AuthProvider";
 
 export const Login = () => {
+  let location = useLocation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [hidePassword, setHidePassword] = useState(true);
   const { loginUser } = useAuthProvider();
 
+  let from = location.state?.from?.pathname || "/";
+
   const guestLogin = () => {
-    setEmail("userabc@gmail.com");
+    setEmail("testuser@gmail.com");
     setPassword("user");
   };
 
@@ -71,7 +74,7 @@ export const Login = () => {
         <button
           className="btn primary-btn"
           onClick={() => {
-            loginUser({ email, password });
+            loginUser({ email, password, from });
           }}
         >
           Login

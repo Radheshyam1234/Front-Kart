@@ -54,7 +54,7 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const loginUser = async ({ email, password }) => {
+  const loginUser = async ({ email, password, from }) => {
     try {
       const {
         data: { response },
@@ -72,7 +72,7 @@ export const AuthProvider = ({ children }) => {
         setIsUserLoggedIn(true);
         setUserProfile(response?.user);
         localStorage.setItem("user", JSON.stringify(response.user));
-        navigate("/");
+        navigate(from, { replace: true });
       }
     } catch (error) {
       const {
