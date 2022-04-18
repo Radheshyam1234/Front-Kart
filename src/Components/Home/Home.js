@@ -1,10 +1,14 @@
 import React from "react";
-
+import { useNavigate } from "react-router-dom";
 import { Categories, Brands } from "../../db";
 import { Slider } from "./Slider";
 
+import { useFilterProvider } from "../../Context/FilterContext/FilterProvider";
+
 import "./home.css";
 export const Home = () => {
+  const { filterDispatch } = useFilterProvider();
+  const navigate = useNavigate();
   return (
     <div>
       <Slider />
@@ -14,7 +18,16 @@ export const Home = () => {
       <div className="grid-4-column-layout">
         {Categories.map((category) => {
           return (
-            <div className="card-vertical card-hover box-shadow">
+            <div
+              className="card-vertical card-hover box-shadow"
+              onClick={() => {
+                filterDispatch({
+                  type: "FILTER_BY_CATEGORIES",
+                  payload: category,
+                });
+                navigate("/products");
+              }}
+            >
               <div className="card-img">
                 <img
                   loading="lazy"
@@ -35,7 +48,16 @@ export const Home = () => {
       <div className="grid-4-column-layout">
         {Brands.map((brand) => {
           return (
-            <div className="card-vertical card-hover box-shadow">
+            <div
+              className="card-vertical card-hover box-shadow"
+              onClick={() => {
+                filterDispatch({
+                  type: "FILTER_BY_BRANDS",
+                  payload: brand,
+                });
+                navigate("/products");
+              }}
+            >
               <div className="card-img">
                 <img
                   loading="lazy"
