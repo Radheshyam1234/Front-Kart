@@ -11,7 +11,12 @@ export const useUserActions = () => {
   const isPresentInCart = (prod) =>
     userState?.cartItems?.find((item) => item.product._id == prod._id);
 
-  const addProductInWishlist = async ({ prod, setToastMsg }) => {
+  const addProductInWishlist = async ({
+    prod,
+    setProcessingItem,
+    setToastMsg,
+  }) => {
+    setProcessingItem(true);
     const addProductToWishlist = async (product) => {
       try {
         const response = await axios({
@@ -30,6 +35,7 @@ export const useUserActions = () => {
             type: "SET_WISHLIST",
             payload: response.data.response,
           });
+          setProcessingItem(false);
           setToastMsg({
             msg: "Added to wishlist Item",
             msgType: "toast-success",
@@ -37,6 +43,7 @@ export const useUserActions = () => {
         }
       } catch (error) {
         console.log(error);
+        setProcessingItem(false);
         setToastMsg({
           msg: "Failed to add",
           msgType: "toast-error",
@@ -47,8 +54,13 @@ export const useUserActions = () => {
     await addProductToWishlist(prod);
   };
 
-  const removeProductFromWishlist = async ({ prod, setToastMsg }) => {
+  const removeProductFromWishlist = async ({
+    prod,
+    setProcessingItem,
+    setToastMsg,
+  }) => {
     const removeProductFromWishlist = async (product) => {
+      setProcessingItem(true);
       try {
         const response = await axios({
           method: "DELETE",
@@ -66,6 +78,7 @@ export const useUserActions = () => {
             type: "SET_WISHLIST",
             payload: response.data.response,
           });
+          setProcessingItem(false);
           setToastMsg({
             msg: "Removed from  wishlist",
             msgType: "toast-success",
@@ -73,6 +86,7 @@ export const useUserActions = () => {
         }
       } catch (error) {
         console.log(error);
+        setProcessingItem(false);
         setToastMsg({
           msg: "Failed to remove",
           msgType: "toast-error",
@@ -82,7 +96,8 @@ export const useUserActions = () => {
     await removeProductFromWishlist(prod);
   };
 
-  const addProductInCart = async ({ prod, setToastMsg }) => {
+  const addProductInCart = async ({ prod, setProcessingItem, setToastMsg }) => {
+    setProcessingItem(true);
     const addProductToCart = async (product) => {
       try {
         const response = await axios({
@@ -98,6 +113,7 @@ export const useUserActions = () => {
 
         if (response.status === 200) {
           userDispatch({ type: "SET_CART", payload: response.data.response });
+          setProcessingItem(false);
           setToastMsg({
             msg: "Product added to cart",
             msgType: "toast-success",
@@ -105,6 +121,7 @@ export const useUserActions = () => {
         }
       } catch (error) {
         console.log(error);
+        setProcessingItem(false);
         setToastMsg({
           msg: "Failed to add",
           msgType: "toast-error",
@@ -115,7 +132,12 @@ export const useUserActions = () => {
     await addProductToCart(prod);
   };
 
-  const removeProductFromCart = async ({ prod, setToastMsg }) => {
+  const removeProductFromCart = async ({
+    prod,
+    setProcessingItem,
+    setToastMsg,
+  }) => {
+    setProcessingItem(true);
     const removeProductFromCart = async (product) => {
       try {
         const response = await axios({
@@ -131,6 +153,7 @@ export const useUserActions = () => {
 
         if (response.status === 200) {
           userDispatch({ type: "SET_CART", payload: response.data.response });
+          setProcessingItem(false);
           setToastMsg({
             msg: "Removed from cart",
             msgType: "toast-success",
@@ -138,6 +161,7 @@ export const useUserActions = () => {
         }
       } catch (error) {
         console.log(error);
+        setProcessingItem(false);
         setToastMsg({
           msg: "Failed to remove",
           msgType: "toast-error",

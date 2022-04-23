@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { useUserActions } from "../utils";
 import { useStateProvider } from "../../Context/StateContext/state-provider";
 
 export const AddTWishlistBtn = ({ prod }) => {
+  const [processingItem, setProcessingItem] = useState(false);
   const { userDispatch } = useStateProvider();
   const {
     isPresentInWishlist,
@@ -11,9 +12,11 @@ export const AddTWishlistBtn = ({ prod }) => {
   } = useUserActions();
   return isPresentInWishlist(prod) ? (
     <button
-      class="btn   primary-btn-outline "
+      className={`btn  primary-btn-outline ${
+        processingItem ? "btn-disabled" : ""
+      }`}
       onClick={() => {
-        removeProductFromWishlist(prod);
+        removeProductFromWishlist({ prod, setProcessingItem });
       }}
     >
       <span class="btn-icon">
@@ -23,9 +26,11 @@ export const AddTWishlistBtn = ({ prod }) => {
     </button>
   ) : (
     <button
-      class="btn   primary-btn-outline "
+      className={`btn  primary-btn-outline ${
+        processingItem ? "btn-disabled" : ""
+      }`}
       onClick={() => {
-        addProductInWishlist(prod);
+        addProductInWishlist({ prod, setProcessingItem });
       }}
     >
       <span class="btn-icon">

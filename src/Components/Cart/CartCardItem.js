@@ -1,7 +1,9 @@
+import React, { useState } from "react";
 import { useUserActions } from "./../utils";
 import { MoveToWishlistBtn } from "./MoveToWishlistBtn";
 
 export const CartCardItem = ({ prod, setToastMsg }) => {
+  const [processingItem, setProcessingItem] = useState(false);
   const { updateQuantity, removeProductFromCart } = useUserActions();
   return (
     <div className="card-horizontal cart-item box-shadow">
@@ -48,11 +50,21 @@ export const CartCardItem = ({ prod, setToastMsg }) => {
         </div>
 
         <div className="row">
-          <MoveToWishlistBtn prod={prod.product} setToastMsg={setToastMsg} />
+          <MoveToWishlistBtn
+            prod={prod.product}
+            setProcessingItem={setProcessingItem}
+            setToastMsg={setToastMsg}
+          />
           <button
-            className="btn primary-btn-text-icon"
+            className={`btn primary-btn-text-icon ${
+              processingItem ? "btn-disabled" : ""
+            }`}
             onClick={() => {
-              removeProductFromCart({ prod: prod.product, setToastMsg });
+              removeProductFromCart({
+                prod: prod.product,
+                setProcessingItem,
+                setToastMsg,
+              });
             }}
           >
             <i className="fas fa-trash-alt"></i>

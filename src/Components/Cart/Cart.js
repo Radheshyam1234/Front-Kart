@@ -13,7 +13,7 @@ export const Cart = () => {
     <div className="cart-page display-flex">
       <div className="cart-items-container">
         {userState?.cartItems?.map((prod) => (
-          <CartCardItem prod={prod} setToastMsg={setToastMsg} />
+          <CartCardItem prod={prod} setToastMsg={setToastMsg} key={prod._id} />
         ))}
       </div>
       {userState.cartItems.length ? (
