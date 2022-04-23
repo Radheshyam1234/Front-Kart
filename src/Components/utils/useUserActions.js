@@ -9,9 +9,9 @@ export const useUserActions = () => {
     userState?.wishlistItems?.find((item) => item._id == prod._id);
 
   const isPresentInCart = (prod) =>
-    userState.cartItems.find((item) => item.product._id == prod._id);
+    userState?.cartItems?.find((item) => item.product._id == prod._id);
 
-  const addProductInWishlist = async (prod) => {
+  const addProductInWishlist = async ({ prod, setToastMsg }) => {
     const addProductToWishlist = async (product) => {
       try {
         const response = await axios({
@@ -30,16 +30,24 @@ export const useUserActions = () => {
             type: "SET_WISHLIST",
             payload: response.data.response,
           });
+          setToastMsg({
+            msg: "Added to wishlist Item",
+            msgType: "toast-success",
+          });
         }
       } catch (error) {
         console.log(error);
+        setToastMsg({
+          msg: "Failed to add",
+          msgType: "toast-error",
+        });
       }
     };
 
     await addProductToWishlist(prod);
   };
 
-  const removeProductFromWishlist = async (prod) => {
+  const removeProductFromWishlist = async ({ prod, setToastMsg }) => {
     const removeProductFromWishlist = async (product) => {
       try {
         const response = await axios({
@@ -58,15 +66,23 @@ export const useUserActions = () => {
             type: "SET_WISHLIST",
             payload: response.data.response,
           });
+          setToastMsg({
+            msg: "Removed from  wishlist",
+            msgType: "toast-success",
+          });
         }
       } catch (error) {
         console.log(error);
+        setToastMsg({
+          msg: "Failed to remove",
+          msgType: "toast-error",
+        });
       }
     };
     await removeProductFromWishlist(prod);
   };
 
-  const addProductInCart = async (prod) => {
+  const addProductInCart = async ({ prod, setToastMsg }) => {
     const addProductToCart = async (product) => {
       try {
         const response = await axios({
@@ -82,16 +98,24 @@ export const useUserActions = () => {
 
         if (response.status === 200) {
           userDispatch({ type: "SET_CART", payload: response.data.response });
+          setToastMsg({
+            msg: "Product added to cart",
+            msgType: "toast-success",
+          });
         }
       } catch (error) {
         console.log(error);
+        setToastMsg({
+          msg: "Failed to add",
+          msgType: "toast-error",
+        });
       }
     };
 
     await addProductToCart(prod);
   };
 
-  const removeProductFromCart = async (prod) => {
+  const removeProductFromCart = async ({ prod, setToastMsg }) => {
     const removeProductFromCart = async (product) => {
       try {
         const response = await axios({
@@ -107,15 +131,23 @@ export const useUserActions = () => {
 
         if (response.status === 200) {
           userDispatch({ type: "SET_CART", payload: response.data.response });
+          setToastMsg({
+            msg: "Removed from cart",
+            msgType: "toast-success",
+          });
         }
       } catch (error) {
         console.log(error);
+        setToastMsg({
+          msg: "Failed to remove",
+          msgType: "toast-error",
+        });
       }
     };
     await removeProductFromCart(prod);
   };
 
-  const updateQuantity = async (prod, increase) => {
+  const updateQuantity = async ({ prod, increase, setToastMsg }) => {
     const updateQtyOfProductInCart = async (product, increase) => {
       try {
         const response = await axios({
@@ -135,9 +167,17 @@ export const useUserActions = () => {
             type: "SET_CART",
             payload: response.data.response,
           });
+          setToastMsg({
+            msg: "Quantity Updated",
+            msgType: "toast-success",
+          });
         }
       } catch (error) {
         console.log(error);
+        setToastMsg({
+          msg: "Faiked to update",
+          msgType: "toast-error",
+        });
       }
     };
     await updateQtyOfProductInCart(prod.product, increase);

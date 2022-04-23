@@ -7,8 +7,6 @@ import "./styles.css";
 export const ProductListing = () => {
   const { productList } = useProductDataProvider();
 
-  const shuffleProduct = (arr) => arr.sort(() => Math.random() - 0.5);
-
   return (
     <div className="product-page-layout">
       <aside className="aside">
@@ -18,7 +16,7 @@ export const ProductListing = () => {
       <section>
         <div className="grid-4-column-layout">
           {FilteredData(productList).length ? (
-            shuffleProduct(FilteredData(productList)).map((prod) => {
+            FilteredData(productList).map((prod) => {
               return <ProductCard prod={prod} key={prod._id} />;
             })
           ) : (

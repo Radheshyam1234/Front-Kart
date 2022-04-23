@@ -3,15 +3,17 @@ import { Link } from "react-router-dom";
 import { OrderSummary } from "./OrderSummary";
 import { CartCardItem } from "./CartCardItem";
 import { useStateProvider } from "../../Context/StateContext/state-provider";
+import { useToast } from "../../Context/ToastContext/ToastProvider";
 
 export const Cart = () => {
   const { userState } = useStateProvider();
+  const { toastMsg, setToastMsg } = useToast();
 
   return (
     <div className="cart-page display-flex">
       <div className="cart-items-container">
         {userState?.cartItems?.map((prod) => (
-          <CartCardItem prod={prod} />
+          <CartCardItem prod={prod} setToastMsg={setToastMsg} />
         ))}
       </div>
       {userState.cartItems.length ? (

@@ -16,8 +16,9 @@ import {
   Cart,
   SearchResultPage,
 } from "./Components";
-
+import { Toast } from "./Components/Toast/Toast";
 import { PrivateRoute } from "./Components/PrivateRoute";
+import { useToast } from "./Context/ToastContext/ToastProvider";
 import {
   getProductsFromDb,
   getUserProfileFromDb,
@@ -31,6 +32,7 @@ export const App = () => {
   const { setProductList } = useProductDataProvider();
   const { setUserProfile } = useAuthProvider();
   const { userState, userDispatch } = useStateProvider();
+  const { toastMsg } = useToast();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -52,6 +54,7 @@ export const App = () => {
   return (
     <div className="App">
       <Navbar />
+      {toastMsg.msg && <Toast {...toastMsg} />}
       <div className="spacer-3rem"></div>
       <Routes>
         <Route path="/" element={<Home />} />

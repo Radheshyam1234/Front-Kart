@@ -1,7 +1,7 @@
 import { useUserActions } from "./../utils";
 import { MoveToWishlistBtn } from "./MoveToWishlistBtn";
 
-export const CartCardItem = ({ prod }) => {
+export const CartCardItem = ({ prod, setToastMsg }) => {
   const { updateQuantity, removeProductFromCart } = useUserActions();
   return (
     <div className="card-horizontal cart-item box-shadow">
@@ -24,7 +24,9 @@ export const CartCardItem = ({ prod }) => {
           <button
             className="border-1px-circle-btn"
             disabled={prod.quantity == 1 ? true : false}
-            onClick={() => updateQuantity(prod, false)}
+            onClick={() =>
+              updateQuantity({ prod, increase: false, setToastMsg })
+            }
           >
             <i className="fas fa-minus"></i>
           </button>
@@ -33,18 +35,24 @@ export const CartCardItem = ({ prod }) => {
           </div>
           <button
             className="border-1px-circle-btn "
-            onClick={() => updateQuantity(prod, true)}
+            onClick={() =>
+              updateQuantity({
+                prod,
+                increase: true,
+                setToastMsg,
+              })
+            }
           >
             <i className="fa fa-plus"></i>
           </button>
         </div>
 
         <div className="row">
-          <MoveToWishlistBtn prod={prod.product} />
+          <MoveToWishlistBtn prod={prod.product} setToastMsg={setToastMsg} />
           <button
             className="btn primary-btn-text-icon"
             onClick={() => {
-              removeProductFromCart(prod.product);
+              removeProductFromCart({ prod: prod.product, setToastMsg });
             }}
           >
             <i className="fas fa-trash-alt"></i>

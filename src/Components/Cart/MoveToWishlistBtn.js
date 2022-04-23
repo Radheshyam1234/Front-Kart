@@ -1,7 +1,7 @@
 import React from "react";
 import { useUserActions } from "../utils/useUserActions";
 
-export const MoveToWishlistBtn = ({ prod }) => {
+export const MoveToWishlistBtn = ({ prod, setToastMsg }) => {
   const { removeProductFromCart, addProductInWishlist, isPresentInWishlist } =
     useUserActions();
   return (
@@ -9,8 +9,9 @@ export const MoveToWishlistBtn = ({ prod }) => {
       <button
         className="btn secondary-btn"
         onClick={() => {
-          !isPresentInWishlist(prod) && addProductInWishlist(prod);
-          removeProductFromCart(prod);
+          !isPresentInWishlist(prod) &&
+            addProductInWishlist({ prod, setToastMsg });
+          removeProductFromCart({ prod, setToastMsg });
         }}
       >
         Move to wishlist
