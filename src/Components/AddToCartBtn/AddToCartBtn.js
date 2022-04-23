@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import { useUserActions } from "../utils/useUserActions";
+import { useAuthProvider } from "../../Context/AuthContext/AuthProvider";
 import { useNavigate } from "react-router-dom";
 
 export const AddToCartBtn = ({ prod, setToastMsg }) => {
+  const [processingItem, setProcessingItem] = useState(false);
+  const { isUserLoggedIn } = useAuthProvider();
   const { addProductInCart, isPresentInCart } = useUserActions();
   const navigate = useNavigate();
   return (
@@ -21,9 +24,17 @@ export const AddToCartBtn = ({ prod, setToastMsg }) => {
         </button>
       ) : prod.inStock ? (
         <button
-          className="btn primary-btn-text-icon "
+          className={`btn primary-btn-text-icon ${
+            processingItem ? "btn-disabled" : ""
+          }`}
           onClick={() => {
-            addProductInCart({ prod, setToastMsg });
+            isUserLoggedIn
+              ? addProductInCart({
+                  prod,
+                  setProcessingItem,
+                  setToastMsg,
+                })
+              : navigate("/login");
           }}
         >
           <span className="btn-icon">
