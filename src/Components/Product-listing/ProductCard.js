@@ -2,8 +2,10 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { AddToCartBtn } from "../../Components";
 import { LikeBtn } from "../../Components";
+import { useToast } from "../../Context/ToastContext/ToastProvider";
 
 export const ProductCard = ({ prod }) => {
+  const { toastMsg, setToastMsg } = useToast();
   return (
     <div className="card-vertical product-card-hover box-shadow">
       <Link to={`/products/${prod._id}`}>
@@ -16,7 +18,7 @@ export const ProductCard = ({ prod }) => {
           />
         </div>
       </Link>
-      <LikeBtn prod={prod} />
+      <LikeBtn prod={prod} setToastMsg={setToastMsg} />
 
       <div className="card-details ">
         <div className="card-category text-bold text-medium">
@@ -40,7 +42,7 @@ export const ProductCard = ({ prod }) => {
           </span>
         </div>
 
-        <AddToCartBtn prod={prod} />
+        <AddToCartBtn prod={prod} setToastMsg={setToastMsg} />
       </div>
     </div>
   );

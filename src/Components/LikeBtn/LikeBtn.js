@@ -1,6 +1,6 @@
 import { useUserActions } from "../utils/useUserActions";
 
-export const LikeBtn = ({ prod }) => {
+export const LikeBtn = ({ prod, setToastMsg }) => {
   const {
     isPresentInWishlist,
     addProductInWishlist,
@@ -12,7 +12,7 @@ export const LikeBtn = ({ prod }) => {
       {isPresentInWishlist(prod) ? (
         <div
           onClick={() => {
-            removeProductFromWishlist(prod);
+            removeProductFromWishlist({ prod, setToastMsg });
           }}
         >
           <i
@@ -23,7 +23,7 @@ export const LikeBtn = ({ prod }) => {
       ) : (
         <div
           onClick={() => {
-            addProductInWishlist(prod);
+            addProductInWishlist({ prod, setToastMsg });
           }}
         >
           <i className="far fa-heart card-favourite-icon"></i>

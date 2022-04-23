@@ -2,7 +2,7 @@ import React from "react";
 import { useUserActions } from "../utils/useUserActions";
 import { useNavigate } from "react-router-dom";
 
-export const AddToCartBtn = ({ prod }) => {
+export const AddToCartBtn = ({ prod, setToastMsg }) => {
   const { addProductInCart, isPresentInCart } = useUserActions();
   const navigate = useNavigate();
   return (
@@ -23,7 +23,7 @@ export const AddToCartBtn = ({ prod }) => {
         <button
           className="btn primary-btn-text-icon "
           onClick={() => {
-            addProductInCart(prod);
+            addProductInCart({ prod, setToastMsg });
           }}
         >
           <span className="btn-icon">

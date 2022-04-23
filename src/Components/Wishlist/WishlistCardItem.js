@@ -4,7 +4,7 @@ import { useStateProvider } from "../../Context/StateContext/state-provider";
 import { AddToCartBtn } from "../AddToCartBtn/AddToCartBtn";
 import { LikeBtn } from "../LikeBtn/LikeBtn";
 
-export const WishlistCardItem = ({ prod }) => {
+export const WishlistCardItem = ({ prod, setToastMsg }) => {
   const { userState } = useStateProvider();
   return (
     <div class="card-vertical product-card-hover box-shadow">
@@ -18,7 +18,7 @@ export const WishlistCardItem = ({ prod }) => {
           />
         </div>
       </Link>
-      <LikeBtn prod={prod} userState={userState} />
+      <LikeBtn prod={prod} userState={userState} setToastMsg={setToastMsg} />
 
       <div class="card-details">
         <div class="card-category text-bold text-medium">Mobile</div>
@@ -26,7 +26,7 @@ export const WishlistCardItem = ({ prod }) => {
           <div class="text-small text-semibold">{prod.name}</div>
         </div>
         <div class="card-price text-medium text-semibold">{prod.price}</div>
-        <AddToCartBtn prod={prod} />
+        <AddToCartBtn prod={prod} setToastMsg={setToastMsg} />
       </div>
     </div>
   );

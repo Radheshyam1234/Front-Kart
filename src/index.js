@@ -7,6 +7,7 @@ import { ProductDataProvider } from "./Context/ProductDataContext/ProductDataPro
 import { FilterProvider } from "./Context/FilterContext/FilterProvider";
 import { AuthProvider } from "./Context/AuthContext/AuthProvider";
 import { StateProvider } from "./Context/StateContext/state-provider";
+import { ToastProvider } from "./Context/ToastContext/ToastProvider";
 ReactDOM.render(
   <React.StrictMode>
     <Router>
@@ -14,7 +15,9 @@ ReactDOM.render(
         <ProductDataProvider>
           <StateProvider>
             <FilterProvider>
-              <App />
+              <ToastProvider>
+                <App />
+              </ToastProvider>
             </FilterProvider>
           </StateProvider>
         </ProductDataProvider>
