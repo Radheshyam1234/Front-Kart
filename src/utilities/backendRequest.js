@@ -68,3 +68,20 @@ export const getCartFromDb = async (userState, userDispatch) => {
     console.log(error);
   }
 };
+
+export const getAddresses = async (setAddresses) => {
+  try {
+    const { data: response, status } = await axios({
+      method: "get",
+      url: `http://localhost:8080/addresses`,
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    });
+    if (status == 200) {
+      setAddresses(response.response);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
