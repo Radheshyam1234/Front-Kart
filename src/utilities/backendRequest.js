@@ -73,7 +73,7 @@ export const getAddresses = async (setAddresses) => {
   try {
     const { data: response, status } = await axios({
       method: "get",
-      url: `http://localhost:8080/addresses`,
+      url: `${API_URL}/addresses`,
       headers: {
         Authorization: "Bearer " + localStorage.getItem("token"),
       },
