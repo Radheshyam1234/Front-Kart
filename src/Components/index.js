@@ -8,3 +8,4 @@ export { SignUp, Login } from "./Authentication";
 export { Wishlist } from "./Wishlist";
 export { Cart } from "./Cart";
 export { SearchResultPage } from "./SearchResults";
+export * from "./Profile";

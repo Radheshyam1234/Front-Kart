@@ -15,6 +15,11 @@ import {
   Wishlist,
   Cart,
   SearchResultPage,
+  ProfilePage,
+  MyProfile,
+  Orders,
+  Addresses,
+  EditProfile,
 } from "./Components";
 import { Toast } from "./Components/Toast/Toast";
 import { PrivateRoute } from "./Components/PrivateRoute";
@@ -24,13 +29,14 @@ import {
   getUserProfileFromDb,
   getWishlistFromDb,
   getCartFromDb,
+  getAddresses,
 } from "./utilities/backendRequest";
 
 import "./styles.css";
 
 export const App = () => {
   const { setProductList } = useProductDataProvider();
-  const { setUserProfile } = useAuthProvider();
+  const { setUserProfile, setAddresses } = useAuthProvider();
   const { userState, userDispatch } = useStateProvider();
   const { toastMsg } = useToast();
   const navigate = useNavigate();
@@ -46,7 +52,7 @@ export const App = () => {
       getUserProfileFromDb(setUserProfile);
       getWishlistFromDb(userState, userDispatch);
       getCartFromDb(userState, userDispatch);
-
+      getAddresses(setAddresses);
       navigate("/");
     }
   }, [token]);
@@ -80,6 +86,49 @@ export const App = () => {
             </PrivateRoute>
           }
         />
+        <Route
+          path="myprofile"
+          element={
+            <PrivateRoute>
+              <ProfilePage />
+            </PrivateRoute>
+          }
+        >
+          <Route
+            index
+            element={
+              <PrivateRoute>
+                <MyProfile />
+              </PrivateRoute>
+            }
+          ></Route>
+
+          <Route
+            path="addresses"
+            element={
+              <PrivateRoute>
+                <Addresses />
+              </PrivateRoute>
+            }
+          />
+
+          <Route
+            path="edit"
+            element={
+              <PrivateRoute>
+                <EditProfile />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="orders"
+            element={
+              <PrivateRoute>
+                <Orders />
+              </PrivateRoute>
+            }
+          />
+        </Route>
       </Routes>
     </div>
   );

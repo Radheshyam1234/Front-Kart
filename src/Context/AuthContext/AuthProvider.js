@@ -14,6 +14,7 @@ export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
   const [userProfile, setUserProfile] = useState(null);
+  const [addresses, setAddresses] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -101,6 +102,8 @@ export const AuthProvider = ({ children }) => {
         signupNewUser,
         loginUser,
         logoutUser,
+        addresses,
+        setAddresses,
       }}
     >
       {children}
