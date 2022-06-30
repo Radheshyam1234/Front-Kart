@@ -22,12 +22,7 @@ input {
   outline: none;
   margin: 8px;
 }
-/* input:invalid {
-  border-color: red;
-}
-input:valid {
-  border-color: var(--dark-success-color);
-} */
+
 .address-container-page {
   max-width: 60rem;
   padding: 1rem;

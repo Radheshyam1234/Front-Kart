@@ -17,10 +17,6 @@ export const ProfilePage = () => {
       text: "Addresses",
       link: "/myprofile/addresses",
     },
-    // {
-    //   text: "Settings",
-    //   link: "/myprofile/settings",
-    // },
   ];
   const { logoutUser } = useAuthProvider();
   return (
