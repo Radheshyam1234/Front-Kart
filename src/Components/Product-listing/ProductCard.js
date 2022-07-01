@@ -27,7 +27,10 @@ export const ProductCard = ({ prod }) => {
         <div className="card-description">
           <div className="text-small text-semibold">{prod.name}</div>
         </div>
-        <div className="card-price text-medium text-semibold">{prod.price}</div>
+        <div className="card-price text-medium text-semibold">
+          {prod.price}{" "}
+          <span className="text-yellow"> ({prod.discount}% Off )</span>
+        </div>
 
         <div className="rating-badge ">
           <span className="rating-badge-number">{prod.rating.starRating}</span>

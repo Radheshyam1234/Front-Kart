@@ -1,5 +1,5 @@
 import axios from "axios";
-import React from "react";
+import { API_URL } from "../../../utilities/ApiUrl";
 import { useAuthProvider } from "../../../Context/AuthContext/AuthProvider";
 
 export const useProfileActions = () => {
@@ -14,7 +14,7 @@ export const useProfileActions = () => {
           status,
         } = await axios({
           method: "POST",
-          url: `http://localhost:8080/users/editprofile`,
+          url: `${API_URL}/users/editprofile`,
           data: {
             firstName,
             lastName,

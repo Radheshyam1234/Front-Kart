@@ -2,6 +2,7 @@ import React from "react";
 import axios from "axios";
 import { useAuthProvider } from "../../../Context/AuthContext/AuthProvider";
 import { useToast } from "../../../Context/ToastContext/ToastProvider";
+import { API_URL } from "../../../utilities/ApiUrl";
 import "../Myprofile.css";
 
 export const AddressCard = ({ address }) => {
@@ -12,7 +13,7 @@ export const AddressCard = ({ address }) => {
     try {
       const { data: response, status } = await axios({
         method: "delete",
-        url: `http://localhost:8080/addresses/${address._id}`,
+        url: `${API_URL}/addresses/${address._id}`,
 
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
