@@ -1,5 +1,7 @@
 import axios from "axios";
 import React, { useState } from "react";
+
+import { API_URL } from "../../../utilities/ApiUrl";
 import { useAuthProvider } from "../../../Context/AuthContext/AuthProvider";
 import { useToast } from "../../../Context/ToastContext/ToastProvider";
 import "../Myprofile.css";
@@ -53,7 +55,7 @@ export const AddressEditor = ({ setOpenAddressEditor }) => {
 
       const { data: response, status } = await axios({
         method: "post",
-        url: `http://localhost:8080/addresses`,
+        url: `${API_URL}/addresses`,
         data: addressData,
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),

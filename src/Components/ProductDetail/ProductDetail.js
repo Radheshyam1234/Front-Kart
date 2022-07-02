@@ -28,7 +28,7 @@ export const ProductDetail = () => {
               class="img-responsive"
             />
           </div>
-          {/* <span class="card-badge text-semibold text-center"> 20% off</span> */}
+
           <div class="card-details">
             <div class="card-title text-bold text-large secondary-text-color">
               {product.brand}
@@ -58,7 +58,18 @@ export const ProductDetail = () => {
             </div>
 
             <div class=" text-large text-semibold mt-1">
-              Rs. {product.price}
+              Rs. {(product.price * (100 - product.discount)) / 100}
+              {product.discount > 0 && (
+                <>
+                  <span className="text-strike-through secondary-text-color ml-1">
+                    Rs.
+                    {product.price}
+                  </span>
+                  <span className="text-yellow ml-1">
+                    ({product.discount}% Off)
+                  </span>
+                </>
+              )}
             </div>
             <p className="vatInfo"> inclusive of all taxes</p>
             <div className="divider-line"></div>

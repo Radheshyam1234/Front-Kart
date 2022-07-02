@@ -2,7 +2,11 @@ import React, { useState } from "react";
 import { useUserActions } from "./../utils";
 import { MoveToWishlistBtn } from "./MoveToWishlistBtn";
 
-export const CartCardItem = ({ prod, setToastMsg }) => {
+export const CartCardItem = ({
+  prod,
+  prod: { product, quantity },
+  setToastMsg,
+}) => {
   const [processingItem, setProcessingItem] = useState(false);
   const { updateQuantity, removeProductFromCart } = useUserActions();
   return (
@@ -10,16 +14,30 @@ export const CartCardItem = ({ prod, setToastMsg }) => {
       <div className="card-img">
         <img
           loading="lazy"
-          src={prod.product?.image}
-          alt={prod.product?.name}
+          src={product?.image}
+          alt={product?.name}
           className="img-responsive"
         />
       </div>
 
       <div className="card-details">
         <div className="card-description">
-          <p className="text-medium text-semibold">{prod.product?.name}</p>
-          <div className="card-price">{prod.product?.price}</div>
+          <p className="text-medium text-semibold">{product?.name}</p>
+          <div className="card-price">
+            {" "}
+            Rs. {(product.price * (100 - product.discount)) / 100}
+            {product.discount > 0 && (
+              <>
+                <span className="text-strike-through secondary-text-color ml-1">
+                  Rs.
+                  {product.price}{" "}
+                </span>
+                <span className="text-yellow ml-1">
+                  ({product.discount}% Off)
+                </span>
+              </>
+            )}
+          </div>
         </div>
 
         <div className="display-flex mt-1">
@@ -51,7 +69,7 @@ export const CartCardItem = ({ prod, setToastMsg }) => {
 
         <div className="row">
           <MoveToWishlistBtn
-            prod={prod.product}
+            prod={product}
             setProcessingItem={setProcessingItem}
             setToastMsg={setToastMsg}
           />
@@ -61,7 +79,7 @@ export const CartCardItem = ({ prod, setToastMsg }) => {
             }`}
             onClick={() => {
               removeProductFromCart({
-                prod: prod.product,
+                prod: product,
                 setProcessingItem,
                 setToastMsg,
               });
