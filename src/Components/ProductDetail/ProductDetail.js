@@ -63,7 +63,7 @@ export const ProductDetail = () => {
                 <>
                   <span className="text-strike-through secondary-text-color ml-1">
                     Rs.
-                    {product.price}{" "}
+                    {product.price}
                   </span>
                   <span className="text-yellow ml-1">
                     ({product.discount}% Off)
