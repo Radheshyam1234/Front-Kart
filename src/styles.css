@@ -104,6 +104,22 @@ a {
   color: var(--dark-success-color);
 }
 
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(221, 40, 40);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgb(169, 29, 29);
+}
+
 @media (max-width: 1000px) and (min-width: 768px) {
   .grid-4-column-layout {
     grid-template-columns: 1fr 1fr 1fr;
