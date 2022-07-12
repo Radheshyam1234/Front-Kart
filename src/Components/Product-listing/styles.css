@@ -1,7 +1,6 @@
 .aside {
   grid-area: aside;
   margin-top: 1rem;
-  /* border-right: 1px solid var(--primary-color); */
   max-height: 80vh;
   position: sticky;
   top: 7rem;
