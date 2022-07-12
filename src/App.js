@@ -53,7 +53,6 @@ export const App = () => {
       getWishlistFromDb(userState, userDispatch);
       getCartFromDb(userState, userDispatch);
       getAddresses(setAddresses);
-      navigate("/");
     }
   }, [token]);
 

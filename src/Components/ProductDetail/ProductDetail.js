@@ -5,6 +5,7 @@ import { AddToCartBtn } from "../AddToCartBtn/AddToCartBtn";
 
 import "./ProductDetail.css";
 import { AddTWishlistBtn } from "./AddTWishlistBtn";
+import { Loader } from "../../Loader/Loader";
 
 export const ProductDetail = () => {
   const [product, setProduct] = useState();
@@ -107,7 +108,9 @@ export const ProductDetail = () => {
           </div>
         </div>
       ) : (
-        "Loading"
+        <div className="display-flex justify-center ">
+          <Loader />
+        </div>
       )}
     </div>
   );
