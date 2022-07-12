@@ -30,11 +30,22 @@ body {
     rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
 }
 
+.text-primary {
+  color: var(--primary-color);
+}
+
 .text-yellow {
   color: var(--warning-color);
 }
 .text-success {
   color: var(--success-color);
+}
+
+.flex-column {
+  flex-direction: column;
+}
+.align-center {
+  align-items: center;
 }
 
 .divider-line {
@@ -57,7 +68,9 @@ a {
 .auth-form-container {
   width: 100%;
 }
-
+.hamburger-menu {
+  display: none;
+}
 .cart-page {
   max-width: 65rem;
   margin: 1rem auto;
@@ -135,5 +148,14 @@ a {
   .cart-price-detail {
     width: 100%;
     margin: 1rem 0 0 0;
+  }
+}
+
+@media (max-width: 900px) {
+  .hamburger-menu {
+    display: block;
+  }
+  .mobile-hide {
+    display: none;
   }
 }
