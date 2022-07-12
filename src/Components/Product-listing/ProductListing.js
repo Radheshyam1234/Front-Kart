@@ -3,6 +3,7 @@ import { useProductDataProvider } from "../../Context/ProductDataContext/Product
 import { ProductCard } from "./ProductCard";
 import { Filter } from "./Filter/Filter";
 import { FilteredData } from "./Filter/utils/filteredData";
+import { Loader } from "../../Loader/Loader";
 import "./styles.css";
 export const ProductListing = () => {
   const { productList } = useProductDataProvider();
@@ -20,7 +21,9 @@ export const ProductListing = () => {
               return <ProductCard prod={prod} key={prod._id} />;
             })
           ) : (
-            <h4 className="text-center">No any Products to show</h4>
+            <div className="display-flex justify-center ">
+              <Loader />
+            </div>
           )}
         </div>
       </section>
