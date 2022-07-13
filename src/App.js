@@ -20,6 +20,7 @@ import {
   Orders,
   Addresses,
   EditProfile,
+  NotFound,
 } from "./Components";
 import { Toast } from "./Components/Toast/Toast";
 import { PrivateRoute } from "./Components/PrivateRoute";
@@ -68,6 +69,7 @@ export const App = () => {
         <Route path="/products" element={<ProductListing />} />
         <Route path="/products/:id" element={<ProductDetail />} />
         <Route path="/search/:query" element={<SearchResultPage />} />
+        <Route path="*" element={<NotFound />} />
         <Route
           path="/wishlist"
           element={

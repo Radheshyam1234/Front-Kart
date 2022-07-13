@@ -9,3 +9,4 @@ export { Wishlist } from "./Wishlist";
 export { Cart } from "./Cart";
 export { SearchResultPage } from "./SearchResults";
 export * from "./Profile";
+export { NotFound } from "./NotFound/NotFound";
