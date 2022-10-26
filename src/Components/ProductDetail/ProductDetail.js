@@ -1,20 +1,31 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useParams } from "react-router";
 import { getProductInfo } from "./getProductInfoFromDb";
 import { AddToCartBtn } from "../AddToCartBtn/AddToCartBtn";
-
-import "./ProductDetail.css";
 import { AddTWishlistBtn } from "./AddTWishlistBtn";
 import { Loader } from "../../Loader/Loader";
 
+import "./ProductDetail.css";
+
 export const ProductDetail = () => {
   const [product, setProduct] = useState();
-
   const { id } = useParams();
 
   useEffect(async () => {
-    const data = await getProductInfo(id);
-    setProduct(data);
+    let cachedProductData = JSON.parse(
+      localStorage.getItem("searchedProducts")
+    );
+    if (id in cachedProductData) {
+      setProduct(cachedProductData[id]);
+    } else {
+      const data = await getProductInfo(id);
+      cachedProductData[id] = data;
+      localStorage.setItem(
+        "searchedProducts",
+        JSON.stringify(cachedProductData)
+      );
+      setProduct(data);
+    }
   }, []);
 
   return (
