@@ -12,9 +12,9 @@ export const ProductDetail = () => {
   const { id } = useParams();
 
   useEffect(async () => {
-    let cachedProductData = JSON.parse(
-      localStorage.getItem("searchedProducts")
-    );
+    let cachedProductData = localStorage.getItem("searchedProducts")
+      ? JSON.parse(localStorage.getItem("searchedProducts"))
+      : {};
     if (id in cachedProductData) {
       setProduct(cachedProductData[id]);
     } else {
