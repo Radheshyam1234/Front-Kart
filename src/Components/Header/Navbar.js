@@ -42,9 +42,9 @@ export const Navbar = () => {
                hide-in-desktop
            `}
         >
-          <button class="btn secondary-btn-text-icon ">
-            <span class="btn-icon">
-              <i class="far fa-times-circle"></i>
+          <button className="btn secondary-btn-text-icon ">
+            <span className="btn-icon">
+              <i className="far fa-times-circle"></i>
             </span>
             Close
           </button>
