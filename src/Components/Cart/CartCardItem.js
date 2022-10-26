@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { useUserActions } from "./../utils";
 import { MoveToWishlistBtn } from "./MoveToWishlistBtn";
 
@@ -9,16 +10,19 @@ export const CartCardItem = ({
 }) => {
   const [processingItem, setProcessingItem] = useState(false);
   const { updateQuantity, removeProductFromCart } = useUserActions();
+
   return (
     <div className="card-horizontal cart-item box-shadow">
-      <div className="card-img">
-        <img
-          loading="lazy"
-          src={product?.image}
-          alt={product?.name}
-          className="img-responsive"
-        />
-      </div>
+      <Link to={`/products/${product._id}`}>
+        <div className="card-img">
+          <img
+            loading="lazy"
+            src={product?.image}
+            alt={product?.name}
+            className="img-responsive"
+          />
+        </div>
+      </Link>
 
       <div className="card-details">
         <div className="card-description">
