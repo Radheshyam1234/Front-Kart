@@ -1,1 +1,1 @@
-export const API_URL = "https://front-project-database.herokuapp.com";
+export const API_URL = "https://front-project-backend.vercel.app";
